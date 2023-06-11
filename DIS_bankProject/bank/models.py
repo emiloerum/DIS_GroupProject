@@ -46,3 +46,26 @@ def select_user_accounts(username):
     cur.close()
     return tuple_resultset
 
+def transfer_account(date, amount, from_account, to_account):
+    cur = conn.cursor()
+    sql = """
+    INSERT INTO Transfers(transfer_date, amount, from_account, to_account)
+    VALUES (%s, %s, %s, %s)
+    """
+    cur.execute(sql, (date, amount, from_account, to_account))
+    conn.commit()
+    cur.close()
+
+def update_balance(account_id, amount):
+    cur = conn.cursor()
+    sql = """
+    UPDATE Accounts 
+    SET amount = amount + %s
+    WHERE account_id = %s
+    """
+    cur.execute(sql, (amount, account_id))
+    conn.commit()
+    cur.close()
+
+
+

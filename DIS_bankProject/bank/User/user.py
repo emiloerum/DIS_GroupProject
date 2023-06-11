@@ -1,11 +1,8 @@
 from flask import render_template, url_for, flash, redirect, request, Blueprint
 from bank import app, conn, bcrypt
-from bank.forms import DepositForm, InvestForm
 from bank.forms import TransferForm
 from flask_login import current_user
-from bank.models import CheckingAccount, InvestmentAccount, update_CheckingAccount
-from bank.models import select_cus_investments_with_certificates, select_cus_investments, select_cus_investments_certificates_sum
-from bank.models import select_cus_accounts,  transfer_account
+from bank.models import select_user_accounts,  transfer_account
 
 
 

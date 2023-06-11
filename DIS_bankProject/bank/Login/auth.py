@@ -47,7 +47,8 @@ def transfer():
     dropdown_accounts = select_user_accounts(current_user.get_id())
     drp_accounts = []
     for drp in dropdown_accounts:
-        drp_accounts.append((drp[0], drp[1]))
+        #Har bare ændret det den appender til kun at være drp[0]
+        drp_accounts.append((drp[0]))
     print(drp_accounts)
     form = TransferForm()
     form.sourceAccount.choices = drp_accounts
@@ -60,4 +61,4 @@ def transfer():
         transfer_account(date, amount, from_account, to_account)
         flash('Transfer succeed!', 'success')
         return redirect(url_for('Login.home'))
-    return render_template('transfer.html', title='Transfer', drop_cus_acc=dropdown_accounts, form=form)
+    return render_template('transfer.html', title='Transfer', drop_user_acc=dropdown_accounts, form=form)

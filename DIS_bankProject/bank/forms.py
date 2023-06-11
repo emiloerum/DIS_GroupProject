@@ -15,6 +15,6 @@ class CustomerLoginForm(FlaskForm):
 
 class TransferForm(FlaskForm):
     amount = IntegerField('amount', validators=[DataRequired()]) 
-    sourceAccount = SelectField('From Account:'  , choices=[], validators=[DataRequired()])
+    sourceAccount = SelectField('Source Account:'  , choices=[], validators=[DataRequired()])
     targetAccount = SelectField('Target Account:', choices=[], validators=[DataRequired()])
     submit = SubmitField('Confirm')

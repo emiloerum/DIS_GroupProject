@@ -1,2 +1,0 @@
-# DIS_GroupProject
- Webapplication

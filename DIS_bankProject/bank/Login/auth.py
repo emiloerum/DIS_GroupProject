@@ -5,6 +5,7 @@ from bank import app, conn, bcrypt
 from flask_login import login_user, current_user, logout_user, login_required
 from bank.models import select_User
 
+
 # and bcrypt.check_password_hash(user[1], form.password.data)
 auth = Blueprint('auth', __name__)
 
@@ -17,8 +18,8 @@ def login():
     if form.validate_on_submit():
         user = select_User(form.id.data)
         if user != None:
-            login_user(user)
-            flash('Login successful.','danger')
+            login_user(user, remember=True, force=True)
+            flash('Login successful.','success')
             return redirect(url_for('auth.transfer'))  
     else:
         flash('Login Unsuccessful. Please check identifier and password', 'danger')
@@ -35,6 +36,8 @@ def sign_up():
 
 @auth.route('/transfer')
 def transfer():
-    form = TransferForm
+    if not current_user.is_authenticated:
+        return redirect(url_for('auth.login'))
+    form = TransferForm()
     return render_template("transfer.html", form=form)
 

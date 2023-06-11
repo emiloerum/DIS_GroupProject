@@ -1,8 +1,8 @@
 # DIS_GroupProject
 HOW TO RUN THE WEB APPLICATION:
 
-Make sure you have Python and flask installed (verify this by flask --version)
-Otherwise install using "pip install flask"
+Make sure you have all the necessary packages installed
+Install using "pip install requirements.txt"
 
 1. Open a terminal and change directory to DIS_bankProject
 

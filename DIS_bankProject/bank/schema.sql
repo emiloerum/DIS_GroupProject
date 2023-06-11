@@ -1,8 +1,9 @@
+-- Might not work. If not, run schema_drop manually and remove this line
 \i schema_drop.sql
 
 CREATE TABLE IF NOT EXISTS Users(
 	username varchar(20) PRIMARY KEY,
-	password varchar(120),
+	password varchar(120)
 );
 
 CREATE TABLE IF NOT EXISTS Accounts (
@@ -14,7 +15,7 @@ CREATE TABLE IF NOT EXISTS Accounts (
 
 
 CREATE TABLE IF NOT EXISTS Owns(
-	username INTEGER NOT NULL REFERENCES Users(username),
+	username varchar(20) NOT NULL REFERENCES Users(username),
 	account_number INTEGER NOT NULL REFERENCES accounts
 );
 ALTER TABLE Owns ADD CONSTRAINT pk_manages

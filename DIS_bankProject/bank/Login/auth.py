@@ -12,6 +12,7 @@ auth = Blueprint('auth', __name__)
 
 @auth.route('/login', methods=['GET', 'POST'])
 def login():
+    # Removed because always true for some reason. FIX
     # if current_user.is_authenticated:
     #     return redirect(url_for('views.home'))
     form = CustomerLoginForm()
@@ -53,12 +54,16 @@ def transfer():
     form = TransferForm()
     form.sourceAccount.choices = drp_accounts
     form.targetAccount.choices = drp_accounts
-    if form.validate_on_submit():
-        date = datetime.date.today()
-        amount = form.amount.data
-        from_account = form.sourceAccount.data
-        to_account = form.targetAccount.data
-        transfer_account(date, amount, from_account, to_account)
-        flash('Transfer succeed!', 'success')
-        return redirect(url_for('Login.home'))
-    return render_template('transfer.html', title='Transfer', drop_user_acc=dropdown_accounts, form=form)
+    # if form.validate_on_submit():
+    date = datetime.date.today()
+    amount = form.amount.data
+    from_account = form.sourceAccount.data
+    to_account = form.targetAccount.data
+    transfer_account(date, amount, from_account, to_account)
+    update_balance(from_account, -abs(amount))
+    update_balance(to_account, amount)
+    flash('Transfer succeed!', 'success')
+    return redirect(url_for('Login.home'))
+    # If statement should be commented in and lines below it indented. ALways false for some reason.
+    # Removed currently for testing. 
+    return render_template('transfer.html', title='Transfer', drop__acc=dropdown_accounts, form=form)

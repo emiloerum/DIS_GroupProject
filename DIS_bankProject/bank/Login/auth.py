@@ -3,7 +3,7 @@ from flask import Flask, redirect, url_for, request, flash
 from bank.forms import CustomerLoginForm, TransferForm 
 from bank import app, conn, bcrypt
 from flask_login import login_user, current_user, logout_user, login_required
-from bank.models import select_User, select_user_accounts, transfer_account
+from bank.models import select_User, select_user_accounts, transfer_account, update_balance
 import datetime
 
 # and bcrypt.check_password_hash(user[1], form.password.data)
@@ -52,12 +52,14 @@ def transfer():
     form = TransferForm()
     form.sourceAccount.choices = drp_accounts
     form.targetAccount.choices = drp_accounts
-    if form.validate_on_submit():
-        date = datetime.date.today()
-        amount = form.amount.data
-        from_account = form.sourceAccount.data
-        to_account = form.targetAccount.data
-        transfer_account(date, amount, from_account, to_account)
-        flash('Transfer succeed!', 'success')
-        return redirect(url_for('Login.home'))
+    # if form.validate_on_submit():
+    date = datetime.date.today()
+    amount = form.amount.data
+    from_account = form.sourceAccount.data
+    to_account = form.targetAccount.data
+    transfer_account(date, amount, from_account, to_account)
+    update_balance(from_account, -abs(amount))
+    update_balance(to_account, amount)
+    flash('Transfer succeed!', 'success')
+    return redirect(url_for('Login.home'))
     return render_template('transfer.html', title='Transfer', drop__acc=dropdown_accounts, form=form)

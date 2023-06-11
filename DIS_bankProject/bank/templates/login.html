@@ -3,24 +3,18 @@
 
 {% block content %}
   <!-- Specific content for the login page -->
-  <form action="" method="POST">
+  <div class="container">
     <h3 align="center">Login</h3>
-    <div class="form-group">
-      <label for="exampleInputEmail1">Email Address</label>
-      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email"
-      value="{{request.form.username}}">
-      <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-    </div>
-    <div class="form-group">
-      <label for="exampleInputPassword1">Password</label>
-      <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Enter Password"
-      value="{{request.form.password}}">
-    </div>
-    <div class="form-check">
-      <input type="checkbox" class="form-check-input" id="exampleCheck1">
-      <label class="form-check-label" for="exampleCheck1">Check me out</label>
-    </div>
-    <button type="submit" class="btn btn-primary">Login</button>
-  </form>
-  <!-- Hvordan centrerer man den der form lidt mere??? -->
+    <br>
+    <form action="" method="post">
+      <input type="text" placeholder="Username" name="username" value="{{
+        request.form.username }}">
+       <input type="password" placeholder="Password" name="password" value="{{
+        request.form.password }}">
+      <input class="btn btn-default" type="submit" value="Login">
+    </form>
+    {% if error %}
+      <p class="error"><strong>Error:</strong> {{ error }}
+    {% endif %}
+  </div>
 {% endblock %}

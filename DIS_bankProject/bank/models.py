@@ -30,3 +30,19 @@ class Customer(tuple, UserMixin):
     def get_id(self):
        return (self.username)
 
+def select_user_accounts(username):
+    cur = conn.cursor()
+    sql = """
+    SELECT
+      a.account_name Accounts
+    , a.account_balance Accounts
+    FROM Owns o
+      NATURAL JOIN Accounts a on o.account_number = a.account_number 
+	WHERE o.username = %s
+    ;
+    """
+    cur.execute(sql, (username,))
+    tuple_resultset = cur.fetchall()
+    cur.close()
+    return tuple_resultset
+

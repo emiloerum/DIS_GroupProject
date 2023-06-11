@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField 
+from wtforms import StringField, PasswordField, SubmitField, IntegerField, SelectField
 from wtforms.validators import DataRequired, Length, EqualTo, ValidationError
 # class AddCustomerForm(FlaskForm):
 #     username = StringField('Username',
@@ -13,15 +13,8 @@ class CustomerLoginForm(FlaskForm):
     password = PasswordField('Password', validators=[DataRequired()])
     submit = SubmitField('Login')
 
-# class TransferForm(FlaskForm):
-#     amount = IntegerField('amount', 
-#                         validators=[DataRequired()])
-#     #sourceAccountTest = SelectField('From Account test:', choices=dropdown_choices, validators=[DataRequired()])
-#     sourceAccount = SelectField('From Account:'  , choices=[], coerce = int, validators=[DataRequired()])
-#     targetAccount = SelectField('Target Account:', choices=[], coerce = int, validators=[DataRequired()])
-#     submit = SubmitField('Confirm')
-
-# class DepositForm(FlaskForm):
-#     amount = IntegerField('amount', 
-#                        validators=[DataRequired()])
-#     submit = SubmitField('Confirm')
+class TransferForm(FlaskForm):
+    amount = IntegerField('amount', validators=[DataRequired()]) 
+    sourceAccount = SelectField('From Account:'  , choices=[], coerce = int, validators=[DataRequired()])
+    targetAccount = SelectField('Target Account:', choices=[], coerce = int, validators=[DataRequired()])
+    submit = SubmitField('Confirm')

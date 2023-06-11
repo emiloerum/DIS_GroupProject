@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField, BooleanField, IntegerField, SelectField
+from wtforms import StringField, PasswordField, SubmitField 
 from wtforms.validators import DataRequired, Length, EqualTo, ValidationError
 # class AddCustomerForm(FlaskForm):
 #     username = StringField('Username',
@@ -9,7 +9,7 @@ from wtforms.validators import DataRequired, Length, EqualTo, ValidationError
 
 
 class CustomerLoginForm(FlaskForm):
-    id = IntegerField('CPR_number', validators=[DataRequired()])
+    id = StringField('Username', validators=[DataRequired()])
     password = PasswordField('Password', validators=[DataRequired()])
     submit = SubmitField('Login')
 

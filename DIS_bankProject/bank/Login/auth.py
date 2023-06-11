@@ -20,8 +20,11 @@ def login():
             login_user(user, remember=form.remember.data)
             flash('Login successful.','success')
             return redirect(url_for('Login.home'))
+        
     else:
         flash('Login Unsuccessful. Please check identifier and password', 'danger')
+
+    return render_template("login.html", form=form)
 
 @auth.route('/logout')
 def logout():

@@ -13,11 +13,6 @@ class CustomerLoginForm(FlaskForm):
     password = PasswordField('Password', validators=[DataRequired()])
     submit = SubmitField('Login')
 
-# class EmployeeLoginForm(FlaskForm):
-#     id = IntegerField('Id', validators=[DataRequired()])
-#     password = PasswordField('Password', validators=[DataRequired()])
-#     submit = SubmitField('Login')
-
 # class TransferForm(FlaskForm):
 #     amount = IntegerField('amount', 
 #                         validators=[DataRequired()])
@@ -29,7 +24,4 @@ class CustomerLoginForm(FlaskForm):
 # class DepositForm(FlaskForm):
 #     amount = IntegerField('amount', 
 #                        validators=[DataRequired()])
-#     submit = SubmitField('Confirm')
-    
-# class InvestForm(FlaskForm):
 #     submit = SubmitField('Confirm')

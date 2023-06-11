@@ -3,7 +3,7 @@ from flask import Flask, redirect, url_for, request, flash
 from bank.forms import CustomerLoginForm, TransferForm 
 from bank import app, conn, bcrypt
 from flask_login import login_user, current_user, logout_user, login_required
-from bank.models import select_User, select_user_accounts, transfer_account
+from bank.models import select_User, select_user_accounts, transfer_account, update_balance
 import datetime
 
 # and bcrypt.check_password_hash(user[1], form.password.data)
@@ -56,14 +56,14 @@ def transfer():
     form.targetAccount.choices = drp_accounts
     # if form.validate_on_submit():
     date = datetime.date.today()
-    amount = form.amount.data
+    amount = int(form.amount.data or 0)
     from_account = form.sourceAccount.data
     to_account = form.targetAccount.data
     transfer_account(date, amount, from_account, to_account)
     update_balance(from_account, -abs(amount))
     update_balance(to_account, amount)
     flash('Transfer succeed!', 'success')
-    return redirect(url_for('Login.home'))
+    return redirect(url_for('views.home'))
     # If statement should be commented in and lines below it indented. ALways false for some reason.
     # Removed currently for testing. 
     return render_template('transfer.html', title='Transfer', drop__acc=dropdown_accounts, form=form)

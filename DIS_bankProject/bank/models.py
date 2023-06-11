@@ -59,8 +59,8 @@ def update_balance(account_id, amount):
     cur = conn.cursor()
     sql = """
     UPDATE Accounts 
-    SET amount = amount + %s
-    WHERE account_id = %s
+    SET account_balance = account_balance + %s
+    WHERE account_number = %s
     """
     cur.execute(sql, (amount, account_id))
     conn.commit()

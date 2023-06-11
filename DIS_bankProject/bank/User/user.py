@@ -3,6 +3,7 @@ from bank import app, conn, bcrypt
 from bank.forms import TransferForm
 from flask_login import current_user
 from bank.models import select_user_accounts,  transfer_account
+import datetime
 
 
 
@@ -18,10 +19,10 @@ def transfer():
     Username = current_user.get_id()
     print(Username)
 
-    # dropdown_accounts = select_cus_accounts(current_user.get_id())
-    # drp_accounts = []
-    # for drp in dropdown_accounts:
-    #     drp_accounts.append((drp[3], drp[1]+' '+str(drp[3])))
+    dropdown_accounts = select_user_accounts(current_user.get_id())
+    drp_accounts = []
+    for drp in dropdown_accounts:
+        drp_accounts.append((drp[0], drp[1]))
     print(drp_accounts)
     form = TransferForm()
     form.sourceAccount.choices = drp_accounts

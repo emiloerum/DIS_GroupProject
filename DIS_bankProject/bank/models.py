@@ -7,7 +7,7 @@ def select_User(username):
 # Change name of database at some point
     cur = conn.cursor()
     sql = """
-    SELECT * FROM Customer
+    SELECT * FROM Users
     WHERE username = %s
     """
     cur.execute(sql, (username,))

@@ -33,17 +33,6 @@
     </form>
 </div>
 
-<div class="content-section">	
-  <p>Dropdown customer account tuples:</p>
-  <ul class="list-group">
-    {% for n in drop_user_acc %}
-    <li class="list-group-item list-group-item-light">{{n}}}</li>
-    {% endfor %}
-  </ul>
-  <br>
-  <p>Same list with a filter: {{ drop_user_acc|join(', ') }}</p>
-</div>
-
 
 
 {% endblock %}

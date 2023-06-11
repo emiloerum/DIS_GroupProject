@@ -3,6 +3,7 @@ from flask import Flask, redirect, url_for, request, flash
 from bank.forms import CustomerLoginForm 
 from bank import app, conn, bcrypt
 from flask_login import login_user, current_user, logout_user, login_required
+from bank.models import select_User
 
 
 auth = Blueprint('auth', __name__)
@@ -14,7 +15,7 @@ def login():
         return redirect(url_for('Login.home'))
     form = CustomerLoginForm()
     if form.validate_on_submit():
-        user = select_user(form.id.data)
+        user = select_User(form.id.data)
         if user != None and bcrypt.check_password_hash(user[2], form.password.data):
             login_user(user, remember=form.remember.data)
             flash('Login successful.','success')

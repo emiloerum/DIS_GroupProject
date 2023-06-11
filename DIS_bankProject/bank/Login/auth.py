@@ -34,7 +34,7 @@ def logout():
 def sign_up():
     return render_template("sign-up.html")
 
-@auth.route('/transfer')
+@auth.route('/transfer', methods=['GET', 'POST'])
 def transfer():
     if not current_user.is_authenticated:
         flash('Please Login.','warning')
@@ -60,4 +60,4 @@ def transfer():
         transfer_account(date, amount, from_account, to_account)
         flash('Transfer succeed!', 'success')
         return redirect(url_for('Login.home'))
-    return render_template('transfer.html', title='Transfer', drop_cus_acc=dropdown_accounts, form=form)
+    return render_template('transfer.html', title='Transfer', drop__acc=dropdown_accounts, form=form)

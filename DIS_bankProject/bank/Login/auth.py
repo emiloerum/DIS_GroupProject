@@ -12,9 +12,8 @@ auth = Blueprint('auth', __name__)
 
 @auth.route('/login', methods=['GET', 'POST'])
 def login():
-    # Removed because always true for some reason. FIX
-    # if current_user.is_authenticated:
-    #     return redirect(url_for('views.home'))
+    if current_user.is_authenticated:
+         return redirect(url_for('views.home'))
     form = CustomerLoginForm()
     if form.validate_on_submit():
         user = select_User(form.id.data)
@@ -35,7 +34,7 @@ def logout():
 def sign_up():
     return render_template("sign-up.html")
 
-@auth.route('/transfer', methods=['POST'])
+@auth.route('/transfer', methods=['GET', 'POST'])
 def transfer():
     if not current_user.is_authenticated:
         flash('Please Login.','warning')

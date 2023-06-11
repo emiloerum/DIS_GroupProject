@@ -33,7 +33,8 @@ def select_user_accounts(username):
     cur = conn.cursor()
     sql = """
     SELECT
-      a.account_name Accounts
+      a.account_number Accounts
+    ,  a.account_name Accounts
     , a.account_balance Accounts
     FROM Owns o
       INNER JOIN Accounts a ON o.account_number = a.account_number 

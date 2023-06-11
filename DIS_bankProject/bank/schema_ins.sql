@@ -5,11 +5,11 @@ DELETE FROM Transfers;
 -- Insert statements for Users Table
 -- Password is randomly generated and hashed.
 INSERT INTO Users (username, password)
-VALUES ('john123', '$2b$12$liXkFXgFcxyEehQo3fZTKOd4x23wAaoLMX6nyCnbSlF5fhKrQkO6q'),
-       ('emma456', '$2b$12$liXkFXgFcxyEehQo3fZTKOd4x23wAaoLMX6nyCnbSlF5fhKrQkO6q'),
-       ('alex789', '$2b$12$liXkFXgFcxyEehQo3fZTKOd4x23wAaoLMX6nyCnbSlF5fhKrQkO6q'),
-       ('lily222', '$2b$12$liXkFXgFcxyEehQo3fZTKOd4x23wAaoLMX6nyCnbSlF5fhKrQkO6q'),
-       ('mark777', '$2b$12$liXkFXgFcxyEehQo3fZTKOd4x23wAaoLMX6nyCnbSlF5fhKrQkO6q');
+VALUES ('john123', '$2b$12$sKmgIuEK4Y7VhyQMvnlY4OXA.6iAWWi2uYKu0X/StX8jOZRDquGku'),
+       ('emma456', '$2b$12$sKmgIuEK4Y7VhyQMvnlY4OXA.6iAWWi2uYKu0X/StX8jOZRDquGku'),
+       ('alex789', '$2b$12$sKmgIuEK4Y7VhyQMvnlY4OXA.6iAWWi2uYKu0X/StX8jOZRDquGku'),
+       ('lily222', '$2b$12$sKmgIuEK4Y7VhyQMvnlY4OXA.6iAWWi2uYKu0X/StX8jOZRDquGku'),
+       ('mark777', '$2b$12$sKmgIuEK4Y7VhyQMvnlY4OXA.6iAWWi2uYKu0X/StX8jOZRDquGku');
 
 -- Insert statements for Accounts Table
 INSERT INTO Accounts (account_number, account_name, account_balance)

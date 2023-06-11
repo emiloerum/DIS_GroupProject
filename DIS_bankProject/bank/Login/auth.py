@@ -12,12 +12,12 @@ auth = Blueprint('auth', __name__)
 
 @auth.route('/login', methods=['GET', 'POST'])
 def login():
-    if current_user.is_authenticated:
-         return redirect(url_for('views.home'))
+    # if current_user.is_authenticated:
+    #      return redirect(url_for('views.home'))
     form = CustomerLoginForm()
     if form.validate_on_submit():
         user = select_User(form.id.data)
-        if user != None:
+        if user != None and bcrypt.check_password_hash(user[1], form.password.data):
             login_user(user)
             flash('Login successful.','success')
             return redirect(url_for('auth.transfer'))  

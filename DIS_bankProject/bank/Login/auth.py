@@ -21,8 +21,8 @@ def login():
             login_user(user, remember=True, force=True)
             flash('Login successful.','success')
             return redirect(url_for('auth.transfer'))  
-    else:
-        flash('Login Unsuccessful. Please check identifier and password', 'danger')
+        else:
+            flash('Login Unsuccessful. Please check identifier and password', 'danger')
 
     return render_template("login.html", form=form)
 

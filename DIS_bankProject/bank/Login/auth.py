@@ -16,7 +16,7 @@ def login():
     form = CustomerLoginForm()
     if form.validate_on_submit():
         user = select_User(form.id.data)
-        if user != None and bcrypt.check_password_hash(user[2], form.password.data):
+        if user != None and bcrypt.check_password_hash(user[1], form.password.data):
             login_user(user, remember=form.remember.data)
             flash('Login successful.','success')
             return redirect(url_for('Login.home'))  

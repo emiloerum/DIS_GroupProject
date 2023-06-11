@@ -27,6 +27,7 @@ def select_User(username):
 @login_manager.user_loader
 def load_user(username):
     user = select_User(username)
+    return user
 
 def select_user_accounts(username):
     cur = conn.cursor()
@@ -35,7 +36,7 @@ def select_user_accounts(username):
       a.account_name Accounts
     , a.account_balance Accounts
     FROM Owns o
-      NATURAL JOIN Accounts a on o.account_number = a.account_number 
+      INNER JOIN Accounts a ON o.account_number = a.account_number 
 	WHERE o.username = %s
     ;
     """
